@@ -1,8 +1,6 @@
 import { interpret, createMachine } from "@xstate/fsm";
 import { trelloBoardMachine } from "./State/trello";
 
-// const boardURL = "https://trello.com/b/6bi5Hyct.json";
-
 export const trelloBoardService = interpret(
   createMachine(
     {

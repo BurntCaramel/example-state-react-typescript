@@ -38,16 +38,16 @@ function TrelloBoard(): JSX.Element {
 
   if (!a) {
     return <p>Initial</p>;
-  } else {
-    return (
-      <div>
-        <p>{a.value}</p>
-        <p>{a.context.data?.id}</p>
-        <p>Lists: {a.context.data?.lists.length}</p>
-        <p>Cards: {a.context.data?.cards.length}</p>
-      </div>
-    );
   }
+
+  return (
+    <div>
+      <p>Trello board: {a.context.boardID}</p>
+      <p><em>{a.value}</em></p>
+      <p>Lists: {a.context.data?.lists.length}</p>
+      <p>Cards: {a.context.data?.cards.length}</p>
+    </div>
+  );
 }
 
 function generateCSSRule(name: string): string {
@@ -58,17 +58,22 @@ function generateCSSRule(name: string): string {
     return `.${toName(name)} { width: ${name.substring(2)}; }`;
   }
 
+  if (name.startsWith("mx-")) {
+    const value = name.substring(3);
+    return `.${toName(name)} { margin-left: ${value}; margin-right: ${value}; }`;
+  }
+
   return `.${toName(name)} { display: ${name}; }`;
 }
 
-const styles = ["block", "flex", "w-100%"].map(generateCSSRule);
+const styles = ["block", "flex", "w-50%", "w-100%", "mx-auto"].map(generateCSSRule);
 
 export default function App() {
   return (
     <div className="App">
       <style>{styles}</style>
       <button
-        className="block w-100%"
+        className="block w-50% mx-auto"
         onClick={() => {
           trelloBoardService.send("START");
         }}
