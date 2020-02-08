@@ -39,7 +39,12 @@ function TrelloBoard(): JSX.Element {
   if (!a) {
     return <p>Initial</p>;
   } else {
-    return <p>{a.value}</p>;
+    return (
+      <div>
+        <p>{a.value}</p>
+        <p>{a.context.data?.id}</p>
+      </div>
+    );
   }
   // } else if (a.value === "idle") {
   //   return <p>Idle</p>;
@@ -50,11 +55,25 @@ function TrelloBoard(): JSX.Element {
   // }
 }
 
+function generateCSSRule(name: string): string {
+  const toName = (valueString: string) =>
+    valueString.replace(/[%:]/g, found => "\\" + found);
+
+  if (name.startsWith("w-")) {
+    return `.${toName(name)} { width: ${name.substring(2)}; }`;
+  }
+
+  return `.${toName(name)} { display: ${name}; }`;
+}
+
+const styles = ["block", "flex", "w-100%"].map(generateCSSRule);
+
 export default function App() {
   return (
     <div className="App">
-      Hello
+      <style>{styles}</style>
       <button
+        className="block w-100%"
         onClick={() => {
           trelloBoardService.send("START");
         }}
