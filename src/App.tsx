@@ -43,16 +43,11 @@ function TrelloBoard(): JSX.Element {
       <div>
         <p>{a.value}</p>
         <p>{a.context.data?.id}</p>
+        <p>Lists: {a.context.data?.lists.length}</p>
+        <p>Cards: {a.context.data?.cards.length}</p>
       </div>
     );
   }
-  // } else if (a.value === "idle") {
-  //   return <p>Idle</p>;
-  // } else if (a.matches("loaded")) {
-  //   return <p>Loaded</p>;
-  // } else {
-  //   return <p>Unknown</p>;
-  // }
 }
 
 function generateCSSRule(name: string): string {

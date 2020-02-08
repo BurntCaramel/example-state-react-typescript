@@ -5,6 +5,15 @@ import { PivotsOnlyTypes } from "pivots/dist/types";
 interface TrelloBoard {
   id: string;
   name: string;
+  lists: Array<{
+    id: string;
+    name: string;
+  }>;
+  cards: Array<{
+    id: string;
+    name: string;
+    desc: string;
+  }>;
 }
 
 interface TrelloBoardContext {
@@ -35,7 +44,7 @@ export const trelloBoardMachine = createMachine<
           target: "Loaded",
           actions: assign({
             data: (
-              context,
+              _context,
               event: PivotsOnlyTypes<TrelloBoardEvent, "SUCCESS">
             ) => event.data
           })
