@@ -22,6 +22,10 @@ export const trelloBoardMachine = createMachine<
 >({
   id: "trelloBoard",
   initial: "Idle",
+  context: {
+    boardID: "", // To be overwritten
+    data: undefined
+  },
   states: {
     Idle: { on: { START: "Loading" } },
     Loading: {
@@ -37,6 +41,7 @@ export const trelloBoardMachine = createMachine<
           })
         }
       }
-    }
+    },
+    Loaded: {}
   }
 });
