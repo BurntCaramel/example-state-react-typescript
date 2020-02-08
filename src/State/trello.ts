@@ -1,4 +1,4 @@
-import { createMachine, assign, EventObject } from "@xstate/fsm";
+import { createMachine, assign } from "@xstate/fsm";
 import { PivotsType } from "pivots";
 import { PivotsOnlyTypes } from "pivots/dist/types";
 
